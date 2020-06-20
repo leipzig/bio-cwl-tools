@@ -16,12 +16,12 @@ requirements:
 
 hints:
 - class: DockerRequirement
-  dockerPull: biowardrobe2/deeptools:v0.0.1
+  dockerPull: kerstenbreuer/deeptools:3.1.1
 - class: SoftwareRequirement
   packages:
     deeptools:
       specs: [ "http://identifiers.org/biotools/deeptools" ]
-      version: [ "0.0.1" ]
+      version: [ "3.1.1" ]
 
 inputs:
 
