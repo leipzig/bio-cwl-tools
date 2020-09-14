@@ -7,6 +7,13 @@ requirements:
     dockerPull: "sinaiiidgst/lancet:latest"
   InlineJavascriptRequirement: {}
 
+hints:
+  - class: SoftwareRequirement
+    packages:
+      Lancet:
+        version:
+          - 1.0.7
+
 inputs:
   # REQUIRED ARGS
 
