@@ -156,8 +156,17 @@ requirements:
          - SYMBOLIC
          - NO_VARIATION
 hints:
-  DockerRequirement:
+  - class: DockerRequirement
     dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+  - class: SoftwareRequirement
+    packages:
+      gatk:
+        version:
+          - 4.1.1.0
+        specs:
+          - http://identifiers.org/biotools/gatk
+
+
 inputs:
 - doc: Threshold number of ambiguous bases. If null, uses threshold fraction; otherwise,
     overrides threshold fraction.

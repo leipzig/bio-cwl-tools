@@ -7,6 +7,15 @@ requirements:
     dockerPull: "broadinstitute/gatk:4.1.3.0"
   InlineJavascriptRequirement: {}
 
+hints:
+  - class: SoftwareRequirement
+    packages:
+      gatk:
+        version:
+          - 4.1.1.0
+        specs:
+          - http://identifiers.org/biotools/gatk
+
 inputs:
   # REQUIRED ARGS
 
