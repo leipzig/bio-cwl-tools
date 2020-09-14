@@ -44,8 +44,15 @@ requirements:
           return self;
       }
 hints:
-  DockerRequirement:
+  - class: DockerRequirement
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
+  - class: SoftwareRequirement
+    packages:
+      picard:
+        version:
+          - 2.22.2
+        specs:
+          - https://bio.tools/picard_arrg
 inputs:
 - doc: Input file (BAM or SAM or a GA4GH url). [synonymous with -I]
   id: INPUT

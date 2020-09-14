@@ -2,11 +2,19 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-hints:
-  DockerRequirement:
-    dockerPull: quay.io/biocontainers/picard:2.22.2--0
 requirements:
   InlineJavascriptRequirement: {}
+
+hints:
+  - class: DockerRequirement
+    dockerPull: quay.io/biocontainers/picard:2.22.2--0
+  - class: SoftwareRequirement
+    packages:
+      picard:
+        version:
+          - 2.22.2
+        specs:
+          - https://bio.tools/picard_tools
 
 baseCommand: [ picard, SortSam ]
 
