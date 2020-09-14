@@ -15,12 +15,12 @@ requirements:
 
 hints:
 - class: DockerRequirement
-  dockerPull: biowardrobe2/bedtools2:v2.26.0
+  dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
 - class: SoftwareRequirement
   packages:
     bedtools:
       specs: [ "http://identifiers.org/biotools/bedtools" ]
-      version: [ "2.26.0" ]
+      version: [ "2.27.1" ]
 
 inputs:
 

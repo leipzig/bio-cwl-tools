@@ -12,12 +12,12 @@ hints:
     coresMin: 1
     ramMin: 15000
   DockerRequirement:
-    dockerPull: biocontainers/bedtools:2.25.0
+    dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
   SoftwareRequirement:
     packages:
       bedtools:
         specs: [ "http://identifiers.org/biotools/bedtools" ]
-        version: [ "2.25.0" ]
+        version: [ "2.27.1" ]
   
 baseCommand: ["bedtools", "bedtobam"]
 stdout: $(inputs.bed.nameroot).bam      
