@@ -7,8 +7,8 @@ hints:
     dockerPull: quay.io/biocontainers/sra-tools:2.10.3--pl526haddd2b5_0
   SoftwareRequirement:
     packages:
-      sra-tools:
-        specs: [ "http://identifiers.org/biotools/sra-tools" ]
+      sratoolkit:
+        specs: [ "https://bio.tools/sra-tools" ]
         version: [ "2.10.3" ]
 
 inputs:

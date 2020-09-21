@@ -2,9 +2,14 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/hisat2:2.0.4--py35_1"
+    dockerPull: "quay.io/biocontainers/star:2.7.6a--0"
+  SoftwareRequirement:
+    packages:
+      STAR:
+        specs: [ "http://identifiers.org/biotools/star" ]
+        version: [ "2.7.6a" ]
 
 inputs:
    

@@ -3,8 +3,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 requirements:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/pca:v0.0.4
+  DockerRequirement:
+    dockerPull: biowardrobe2/pca:v0.0.4
 
 inputs:
 

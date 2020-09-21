@@ -11,11 +11,11 @@ doc: |-
    SAMRecords, and the header contains only sequence records.
 
 requirements:
-  - class: ShellCommandRequirement
-  - class: InitialWorkDirRequirement
+  ShellCommandRequirement: {}
+  InitialWorkDirRequirement:
     listing:
       - $(inputs.REFERENCE)
-  - class: InlineJavascriptRequirement
+  InlineJavascriptRequirement:
     expressionLib:
     - |
       function generateGATK4BooleanValue(){
@@ -30,15 +30,15 @@ requirements:
           return self;
       }
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       picard:
         version:
           - 2.22.2
         specs:
-          - https://bio.tools/picard_tools
+          - https://bio.tools/picard_arrg
 inputs:
 - doc: Input reference fasta or fasta.gz [synonymous with -R]
   id: REFERENCE
@@ -183,9 +183,11 @@ arguments:
 
 outputs:
   sequences_with_dictionary:
-#    secondaryFiles:
-#      - .dict
-#      - .fai
+    type: File
+    format: edam:format_2573  # SAM
+    secondaryFiles:
+      - ^.dict
+      - .fai?
     outputBinding:
       glob: $(inputs.REFERENCE.basename)
 

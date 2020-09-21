@@ -6,12 +6,12 @@ doc: |
   Removal of duplicates from aligned reads.
 
 hints:
-  - class: ResourceRequirement
+  ResourceRequirement:
     coresMin: 1
     ramMin: 20000
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       picard:
         version:

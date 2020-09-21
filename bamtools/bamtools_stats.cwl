@@ -7,13 +7,13 @@ requirements:
 - class: ShellCommandRequirement
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bamtools:v2.4.1
-- class: SoftwareRequirement
-  packages:
-    bamtools:
-      specs: [ "http://identifiers.org/biotools/bamtools" ]
-      version: [ "2.4.1" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/bamtools:v2.4.1
+  SoftwareRequirement:
+    packages:
+      bamtools:
+        specs: [ "http://identifiers.org/biotools/bamtools" ]
+        version: [ "2.4.1" ]
 
 inputs:
 

@@ -16,8 +16,8 @@ requirements:
     }
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/homer:v0.0.2
+  DockerRequirement:
+    dockerPull: biowardrobe2/homer:v0.0.2
 
 inputs:
 

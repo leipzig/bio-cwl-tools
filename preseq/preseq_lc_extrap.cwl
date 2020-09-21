@@ -16,7 +16,7 @@ requirements:
       };
 
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: stevetsa/preseq:2.0
 
 inputs:

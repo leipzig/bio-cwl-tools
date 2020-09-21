@@ -35,8 +35,8 @@ requirements:
       };
 
 hints:
-- class: DockerRequirement
-  dockerPull: quay.io/biocontainers/crossmap:0.2.7--py27_0
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/crossmap:0.2.7--py27_0
 
 inputs:
 

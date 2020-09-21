@@ -45,13 +45,13 @@ requirements:
     };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/bowtie:v1.2.0
-- class: SoftwareRequirement
-  packages:
-    bowtie:
-      specs: [ "http://identifiers.org/biotools/bowtie" ]
-      version: [ "1.2.0" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/bowtie:v1.2.0
+  SoftwareRequirement:
+    packages:
+      bowtie:
+        specs: [ "http://identifiers.org/biotools/bowtie" ]
+        version: [ "1.2.0" ]
 
 inputs:
 

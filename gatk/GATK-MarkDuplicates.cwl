@@ -8,7 +8,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 hints:
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       gatk:
         version:

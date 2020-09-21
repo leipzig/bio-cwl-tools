@@ -16,8 +16,8 @@ requirements:
       };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/hal:v0.0.1
+  DockerRequirement:
+    dockerPull: biowardrobe2/hal:v0.0.1
 
 inputs:
 

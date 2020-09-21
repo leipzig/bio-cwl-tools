@@ -11,7 +11,12 @@ hints:
     coresMin: 4
     ramMin: 15000
   DockerRequirement:
-    dockerPull: kerstenbreuer/samtools:1.7
+    dockerPull: quay.io/biocontainers/samtools:1.2-0
+  SoftwareRequirement:
+    packages:
+      samtools:
+        specs: [ "http://identifiers.org/biotools/samtools" ]
+        version: [ "1.10" ]
 
 baseCommand: ["samtools", "sort"]
 arguments:

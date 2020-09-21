@@ -10,13 +10,13 @@ requirements:
         };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/fastx_toolkit:v0.0.14
-- class:  SoftwareRequirement
-  packages:
-    fastx-toolkit:
-      specs: [ "http://identifiers.org/biotools/fastx-toolkit" ]
-      version: [ "0.0.14" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/fastx_toolkit:v0.0.14
+  SoftwareRequirement:
+    packages:
+      fastx_toolkit:
+        specs: [ "http://identifiers.org/biotools/fastx-toolkit" ]
+        version: [ "0.0.14" ]
 
 inputs:
 

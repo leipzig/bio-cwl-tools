@@ -3,13 +3,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/sratoolkit:v2.8.2-1
-- class:  SoftwareRequirement
-  packages:
-    sra-tools:
-      specs: [ "http://identifiers.org/biotools/sra-tools" ]
-      version: [ "2.8.2" ]
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/sra-tools:2.10.3--pl526haddd2b5_0
+  SoftwareRequirement:
+    packages:
+      sratoolkit:
+        specs: [ "https://bio.tools/sra-tools" ]
+        version: [ "2.10.3" ]
 
 inputs:
 

@@ -8,7 +8,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 hints:
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       gatk:
         version:
@@ -19,38 +19,53 @@ hints:
 inputs:
   # REQUIRED ARGS
 
-  InputFile:
+  Variant:
     type: File
     inputBinding:
-      prefix: "--V"
-    secondaryFiles:
-      - .stats
+      prefix: "-V"
 
-  Reference:
+  Resource:
     type: File
     inputBinding:
-      prefix: "-R"
+      prefix: "-resource"
     secondaryFiles:
-      - .dict
-      - .fai
+      - .idx
 
   Output:
     type: string
-    default: "filtered.vcf.gz"
+    default: "filtered.vcf"
     inputBinding:
-      prefix: "--O"
-      valueFrom: "filtered.vcf.gz"
+      prefix: "-O"
+      valueFrom: "filtered.vcf"
 
   # OPTIONAL ARGS
-  ContaminationTable:
+  Reference:
     type: File?
     inputBinding:
-      prefix: "--contamination-table"
+      prefix: "-R"
+    secondaryFiles:
+      - ^.dict
+      - .fai
+
+  Architecture:
+    type: string?
+    inputBinding:
+      prefix: "-architecture"
+
+  Tranche:
+    type: int?
+    inputBinding:
+      prefix: "-tranche"
+
+  InfoKey:
+    type: string?
+    inputBinding:
+      prefix: "--info-key"
 
 baseCommand: ["/gatk/gatk"]
 
 arguments:
-  - valueFrom: "FilterMutectCalls"
+  - valueFrom: "FilterVariantTranches"
     position: -1
 
 outputs:
@@ -58,7 +73,7 @@ outputs:
     type: File
     format: edam:format_3016  # VCF
     outputBinding:
-      glob: "filtered.vcf.gz"
+      glob: "filtered.vcf"
 
 $namespaces:
   edam: http://edamontology.org/

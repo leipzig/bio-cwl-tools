@@ -1,82 +1,39 @@
 #!/usr/bin/env cwl-runner
-cwlVersion: v1.0
+cwlVersion: v1.1
 class: CommandLineTool
 
 baseCommand:
 - gatk
-- VariantFiltration
-
+- SplitNCigarReads
 doc: |-
-  Filter variant calls based on INFO and/or FORMAT annotations
+  Splits reads that contain Ns in their cigar string (e.g. spanning splicing events in RNAseq data).
 
-   <p>
-   This tool is designed for hard-filtering variant calls based on certain criteria. Records are hard-filtered by
-   changing the value in the FILTER field to something other than PASS. Filtered records will be preserved in the output
-   unless their removal is requested in the command line. </p>
+   Identifies all N cigar elements and creates k+1 new reads (where k is the number of N cigar elements).
+   The first read includes the bases that are to the left of the first N element, while the part of the read that is to the right of the N
+   (including the Ns) is hard clipped and so on for the rest of the new reads. Used for post-processing RNA reads aligned against the full reference.
 
-   <h3>Inputs</h3>
-   <ul>
-       <li>A VCF of variant calls to filter.</li>
-       <li>One or more filtering expressions and corresponding filter names.</li>
-   </ul>
+   <h3>Input</h3>
+    <p>
+  	    BAM file
+    </p>
+
 
    <h3>Output</h3>
-   <p>
-   A filtered VCF in which passing variants are annotated as PASS and failing variants are annotated with the name(s) of
-   the filter(s) they failed.
-   </p>
+    <p>
+        BAM file with reads split at N CIGAR elements and CIGAR strings updated.
+    </p>
+hints:
+  DockerRequirement:
+    dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+  SoftwareRequirement:
+    packages:
+      gatk:
+        version:
+          - 4.1.1.0
+        specs:
+          - http://identifiers.org/biotools/gatk
 
-   <h3>Usage example</h3>
-   <pre>
-     gatk VariantFiltration \
-     -R reference.fasta \
-     -V input.vcf.gz \
-     -O output.vcf.gz \
-     --filter-name "my_filter1" \
-     --filter-expression "AB < 0.2" \
-     --filter-name "my_filter2" \
-     --filter-expression "MQ0 > 50"
-   </pre>
 
-   <h3>Note</h3>
-   <p>
-   Composing filtering expressions can range from very simple to extremely complicated depending on what you're
-   trying to do.
-   <p>
-   Compound expressions (ones that specify multiple conditions connected by &&, AND, ||, or OR, and reference
-   multiple attributes) require special consideration. By default, variants that are missing one or more of the
-   attributes referenced in a compound expression are treated as PASS for the entire expression, even if the variant
-   would satisfy the filter criteria for another part of the expression. This can lead to unexpected results if any
-   of the attributes referenced in a compound expression are present for some variants, but missing for others.
-   <p>
-   It is strongly recommended that such expressions be provided as individual arguments, each referencing a
-   single attribute and specifying a single criteria. This ensures that all of the individual expression are
-   applied to each variant, even if a given variant is missing values for some of the expression conditions.
-   <p>
-   As an example, multiple individual expressions provided like this:
-   <pre>
-     gatk VariantFiltration \
-     -R reference.fasta \
-     -V input.vcf.gz \
-     -O output.vcf.gz \
-     --filter-name "my_filter1" \
-     --filter-expression "AB < 0.2" \
-     --filter-name "my_filter2" \
-     --filter-expression "MQ0 > 50"
-   </pre>
-
-   are preferable to a single compound expression such as this:
-
-    <pre>
-      gatk VariantFiltration \
-      -R reference.fasta \
-      -V input.vcf.gz \
-      -O output.vcf.gz \
-      --filter-name "my_filter" \
-      --filter-expression "AB < 0.2 || MQ0 > 50"
-    </pre>
-   See this <a href="https://www.broadinstitute.org/gatk/guide/article?id=1255">article about using JEXL expressions</a>
-   for more information.
 requirements:
   ShellCommandRequirement: {}
   InlineJavascriptRequirement:
@@ -162,18 +119,42 @@ requirements:
       String.prototype.endsWith = String.prototype.endsWith || function(suffix) {
           return this.indexOf(suffix, this.length - suffix.length) >= 0;
       };
-hints:
-  - class: DockerRequirement
-    dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
-  - class: SoftwareRequirement
-    packages:
-      gatk:
-        version:
-          - 4.1.1.0
-        specs:
-          - http://identifiers.org/biotools/gatk
-
 inputs:
+- doc: Reference sequence file [synonymous with -R]
+  id: reference
+  type: File
+  inputBinding:
+    prefix: --reference
+  secondaryFiles:
+  - .fai
+  - ^.dict
+- doc: BAM/SAM/CRAM file containing reads [synonymous with -I]
+  id: reads
+  type:
+  - type: array
+    items: File
+    inputBinding:
+      valueFrom: $(null)
+  - File
+  inputBinding:
+    prefix: --input
+  secondaryFiles: $(self.basename)$(self.nameext.replace('m','i'))?
+- doc: Write output to this BAM filename [synonymous with -O]
+  id: output_filename
+  type: string
+  inputBinding:
+    prefix: --output
+- doc: Read filters to be applied before analysis [synonymous with -RF]
+  id: read_filter
+  type:
+  - 'null'
+  - type: array
+    items: string
+    inputBinding:
+      valueFrom: $(null)
+  - string
+  inputBinding:
+    valueFrom: $(generateArrayCmd("--read-filter"))
 - doc: Threshold number of ambiguous bases. If null, uses threshold fraction; otherwise,
     overrides threshold fraction.
   id: ambig-filter-bases
@@ -379,18 +360,6 @@ inputs:
   type: int?
   inputBinding:
     prefix: --cloud-prefetch-buffer
-- doc: The number of SNPs which make up a cluster. Must be at least 2 [synonymous
-    with -cluster]
-  id: cluster-size
-  type: int?
-  inputBinding:
-    prefix: --cluster-size
-- doc: The window size (in bases) in which to evaluate clustered SNPs [synonymous
-    with -window]
-  id: cluster-window-size
-  type: int?
-  inputBinding:
-    prefix: --cluster-window-size
 - doc: If true, create a BAM/CRAM index when writing a coordinate-sorted BAM/CRAM
     file. [synonymous with -OBI]
   id: create-output-bam-index
@@ -451,6 +420,12 @@ inputs:
   inputBinding:
     prefix: --disable-tool-default-read-filters
     valueFrom: $(generateGATK4BooleanValue())
+- doc: do not have the walker soft-clip overhanging sections of the reads
+  id: do-not-fix-overhangs
+  type: boolean?
+  inputBinding:
+    prefix: --do-not-fix-overhangs
+    valueFrom: $(generateGATK4BooleanValue())
 - doc: One or more genomic intervals to exclude from processing [synonymous with -XL]
   id: exclude-intervals
   type:
@@ -462,34 +437,6 @@ inputs:
   - string
   inputBinding:
     valueFrom: $(generateArrayCmd("--exclude-intervals"))
-- doc: One or more expressions used with INFO fields to filter [synonymous with -filter]
-  id: filter-expression
-  type:
-  - 'null'
-  - type: array
-    items: string
-    inputBinding:
-      valueFrom: $(null)
-  - string
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--filter-expression"))
-- doc: Names to use for the list of filters
-  id: filter-name
-  type:
-  - 'null'
-  - type: array
-    items: string
-    inputBinding:
-      valueFrom: $(null)
-  - string
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--filter-name"))
-- doc: Filter records NOT in given input mask.
-  id: filter-not-in-mask
-  type: boolean?
-  inputBinding:
-    prefix: --filter-not-in-mask
-    valueFrom: $(generateGATK4BooleanValue())
 - doc: A configuration file to use with the GATK.
   id: gatk-config-file
   type: File?
@@ -513,43 +460,6 @@ inputs:
   type: string?
   inputBinding:
     prefix: --gcs-project-for-requester-pays
-- doc: One or more expressions used with FORMAT (sample/genotype-level) fields to
-    filter (see documentation guide for more info) [synonymous with -G-filter]
-  id: genotype-filter-expression
-  type:
-  - 'null'
-  - type: array
-    items: string
-    inputBinding:
-      valueFrom: $(null)
-  - string
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--genotype-filter-expression"))
-- doc: Names to use for the list of sample/genotype filters (must be a 1-to-1 mapping);
-    this name is put in the FILTER field for variants that get filtered [synonymous
-    with -G-filter-name]
-  id: genotype-filter-name
-  type:
-  - 'null'
-  - type: array
-    items: string
-    inputBinding:
-      valueFrom: $(null)
-  - string
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--genotype-filter-name"))
-- doc: BAM/SAM/CRAM file containing reads [synonymous with -I]
-  id: input
-  type:
-  - 'null'
-  - type: array
-    items: File
-    inputBinding:
-      valueFrom: $(null)
-  - File
-  inputBinding:
-    valueFrom: $(applyTagsToArgument("--input", inputs['input_tags']))
-  secondaryFiles: $(self.basename + self.nameext.replace('m','i'))
 - doc: A argument to set the tags of 'input'
   id: input_tags
   type:
@@ -615,82 +525,40 @@ inputs:
     - string
     - type: array
       items: string
-- doc: Remove previous filters applied to the VCF
-  id: invalidate-previous-filters
-  type: boolean?
-  inputBinding:
-    prefix: --invalidate-previous-filters
-    valueFrom: $(generateGATK4BooleanValue())
-- doc: Invert the selection criteria for --filter-expression [synonymous with -invfilter]
-  id: invert-filter-expression
-  type: boolean?
-  inputBinding:
-    prefix: --invert-filter-expression
-    valueFrom: $(generateGATK4BooleanValue())
-- doc: Invert the selection criteria for --genotype-filter-expression [synonymous
-    with -invG-filter]
-  id: invert-genotype-filter-expression
-  type: boolean?
-  inputBinding:
-    prefix: --invert-genotype-filter-expression
-    valueFrom: $(generateGATK4BooleanValue())
 - doc: Lenient processing of VCF files [synonymous with -LE]
   id: lenient
   type: boolean?
   inputBinding:
     prefix: --lenient
     valueFrom: $(generateGATK4BooleanValue())
-- doc: Input mask
-  id: mask
-  type: File?
-  inputBinding:
-    valueFrom: $(applyTagsToArgument("--mask", inputs['mask_tags']))
-- doc: A argument to set the tags of 'mask'
-  id: mask_tags
-  type:
-  - 'null'
-  - string
-  - string[]
-- doc: How many bases beyond records from a provided 'mask' should variants be filtered
-  id: mask-extension
+- doc: max number of bases allowed in the overhang
+  id: max-bases-in-overhang
   type: int?
   inputBinding:
-    prefix: --mask-extension
-- doc: The text to put in the FILTER field if a 'mask' is provided and overlaps with
-    a variant call
-  id: mask-name
-  type: string?
+    prefix: --max-bases-in-overhang
+- doc: max number of mismatches allowed in the overhang
+  id: max-mismatches-in-overhang
+  type: int?
   inputBinding:
-    prefix: --mask-name
-- doc: When evaluating the JEXL expressions, missing values should be considered failing
-    the expression
-  id: missing-values-evaluate-as-failing
+    prefix: --max-mismatches-in-overhang
+- doc: max reads allowed to be kept in memory at a time by the BAM writer
+  id: max-reads-in-memory
+  type: int?
+  inputBinding:
+    prefix: --max-reads-in-memory
+- doc: have the walker split secondary alignments (will still repair MC tag without
+    it)
+  id: process-secondary-alignments
   type: boolean?
   inputBinding:
-    prefix: --missing-values-evaluate-as-failing
+    prefix: --process-secondary-alignments
     valueFrom: $(generateGATK4BooleanValue())
-- doc: File to which variants should be written [synonymous with -O]
-  id: output_filename
-  type: string
-  inputBinding:
-    prefix: --output
 - doc: Whether to suppress job-summary info on System.err.
   id: QUIET
   type: boolean?
   inputBinding:
     prefix: --QUIET
     valueFrom: $(generateGATK4BooleanValue())
-- doc: Read filters to be applied before analysis [synonymous with -RF]
-  id: read-filter
-  type:
-  - 'null'
-  - type: array
-    items: string
-    inputBinding:
-      valueFrom: $(null)
-  - string
-  inputBinding:
-    valueFrom: $(generateArrayCmd("--read-filter"))
 - doc: Indices to use for the read inputs. If specified, an index must be provided
     for every read input and in the same order as the read inputs. If this argument
     is not specified, the path to the index for each input will be inferred automatically.
@@ -718,14 +586,18 @@ inputs:
     - SILENT
   inputBinding:
     prefix: --read-validation-stringency
-- doc: Reference sequence [synonymous with -R]
-  id: reference
-  type: File?
+- doc: refactor cigar string with NDN elements to one element [synonymous with -fixNDN]
+  id: refactor-cigar-string
+  type: boolean?
   inputBinding:
-    prefix: --reference
-  secondaryFiles:
-  - .fai
-  - ^.dict
+    prefix: --refactor-cigar-string
+    valueFrom: $(generateGATK4BooleanValue())
+- doc: A argument to set the tags of 'reference'
+  id: reference_tags
+  type:
+  - 'null'
+  - string
+  - string[]
 - doc: Output traversal statistics every time this many seconds elapse
   id: seconds-between-progress-updates
   type: double?
@@ -743,12 +615,6 @@ inputs:
   - 'null'
   - string
   - string[]
-- doc: Set filtered genotypes to no-call
-  id: set-filtered-genotype-to-no-call
-  type: boolean?
-  inputBinding:
-    prefix: --set-filtered-genotype-to-no-call
-    valueFrom: $(generateGATK4BooleanValue())
 - doc: display hidden arguments
   id: showHidden
   type: boolean?
@@ -760,6 +626,12 @@ inputs:
   type: boolean?
   inputBinding:
     prefix: --sites-only-vcf-output
+    valueFrom: $(generateGATK4BooleanValue())
+- doc: skip the 255 -> 60 MQ read transform [synonymous with -skip-mq-transform]
+  id: skip-mapping-quality-transform
+  type: boolean?
+  inputBinding:
+    prefix: --skip-mapping-quality-transform
     valueFrom: $(generateGATK4BooleanValue())
 - doc: Temp directory to use.
   id: tmp-dir
@@ -780,17 +652,6 @@ inputs:
   inputBinding:
     prefix: --use-jdk-inflater
     valueFrom: $(generateGATK4BooleanValue())
-- doc: A VCF file containing variants [synonymous with -V]
-  id: variant
-  type: File
-  inputBinding:
-    valueFrom: $(applyTagsToArgument("--variant", inputs['variant_tags']))
-- doc: A argument to set the tags of 'variant'
-  id: variant_tags
-  type:
-  - 'null'
-  - string
-  - string[]
 - doc: Control verbosity of logging.
   id: verbosity
   type:
@@ -816,6 +677,6 @@ outputs:
   outputBinding:
     glob: $(inputs.output_filename)
   secondaryFiles:
-  - "$(inputs['create-output-variant-index']? self.basename + (inputs.output_filename.endsWith('.gz')?\
-    \ '.tbi':'.idx') : [])"
-  - "$(inputs['create-output-variant-md5']? self.basename + '.md5' : [])"
+  - "$(inputs['create-output-bam-index']? self.basename + self.nameext.replace('m',\
+    \ 'i') : [])"
+  - "$(inputs['create-output-bam-md5']? self.basename + '.md5' : [])"

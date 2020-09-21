@@ -15,19 +15,19 @@ requirements:
         };
 
 hints:
-- class: DockerRequirement
-  dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
-- class: SoftwareRequirement
-  packages:
-    bedtools:
-      specs: [ "http://identifiers.org/biotools/bedtools" ]
-      version: [ "2.27.1" ]
+  DockerRequirement:
+    dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
+  SoftwareRequirement:
+    packages:
+      bedtools:
+        specs: [ "http://identifiers.org/biotools/bedtools" ]
+        version: [ "2.27.1" ]
 
 inputs:
 
   genome_fasta_file:
     type: File
-    secondaryFiles: $(self.basename+".fai")  # due to bug in cwltool==1.0.20190621234233
+    secondaryFiles: $(self.basename+".fai")
     inputBinding:
       position: 5
       prefix: "-fi"

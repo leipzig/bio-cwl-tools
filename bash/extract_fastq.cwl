@@ -15,8 +15,8 @@ requirements:
 - class: ShellCommandRequirement
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap:v0.0.3
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap:v0.0.3
 
 inputs:
 

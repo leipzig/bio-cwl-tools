@@ -3,13 +3,13 @@ cwlVersion: v1.0
 class: CommandLineTool
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/manorm:v0.0.2
-- class:  SoftwareRequirement
-  packages:
-    manorm:
-      specs: [ "http://identifiers.org/biotools/manorm" ]
-      version: [ "0.0.2" ]
+  DockerRequirement:
+    dockerPull: biowardrobe2/manorm:v0.0.2
+  SoftwareRequirement:
+    packages:
+      manorm:
+        specs: [ "http://identifiers.org/biotools/manorm" ]
+        version: [ "0.0.2" ]
 
 inputs:
 

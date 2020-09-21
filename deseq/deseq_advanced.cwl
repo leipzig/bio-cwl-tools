@@ -6,13 +6,13 @@ requirements:
 - class: InlineJavascriptRequirement
 
 hints:
-- class: DockerRequirement
-  dockerPull: biowardrobe2/scidap-deseq:v0.0.8
-- class: SoftwareRequirement
-  packages:
-    deseq:
-      specs: [ "http://identifiers.org/biotools/deseq" ]
-      version: [ "0.0.8" ] ## TODO: Update!
+  DockerRequirement:
+    dockerPull: biowardrobe2/scidap-deseq:v0.0.8
+  SoftwareRequirement:
+    packages:
+      deseq:
+        specs: [ "http://identifiers.org/biotools/deseq" ]
+        version: [ "0.0.8" ] ## TODO: Update!
 
 inputs:
 

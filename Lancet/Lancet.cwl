@@ -2,13 +2,11 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "sinaiiidgst/lancet:latest"
   InlineJavascriptRequirement: {}
-
-hints:
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       Lancet:
         version:

@@ -15,13 +15,13 @@ requirements:
     };
 
 hints:
-- class: DockerRequirement
-  dockerPull: kerstenbreuer/deeptools:3.1.1
-- class: SoftwareRequirement
-  packages:
-    deeptools:
-      specs: [ "http://identifiers.org/biotools/deeptools" ]
-      version: [ "3.1.1" ]
+  DockerRequirement:
+    dockerPull: kerstenbreuer/deeptools:3.1.1
+  SoftwareRequirement:
+    packages:
+      deeptools:
+        specs: [ "http://identifiers.org/biotools/deeptools" ]
+        version: [ "3.1.1" ]
 
 inputs:
 

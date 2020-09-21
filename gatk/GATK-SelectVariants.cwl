@@ -156,9 +156,9 @@ requirements:
          - SYMBOLIC
          - NO_VARIATION
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       gatk:
         version:

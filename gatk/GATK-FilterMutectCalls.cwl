@@ -8,7 +8,7 @@ requirements:
   InlineJavascriptRequirement: {}
 
 hints:
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       gatk:
         version:
@@ -22,50 +22,35 @@ inputs:
   InputFile:
     type: File
     inputBinding:
-      prefix: "-I"
+      prefix: "--V"
     secondaryFiles:
-      - .bai
-
-  Variant:
-    type: File
-    inputBinding:
-      prefix: "-V"
+      - .stats
 
   Reference:
     type: File
     inputBinding:
       prefix: "-R"
     secondaryFiles:
-      - ^.dict
+      - .dict
       - .fai
 
   Output:
     type: string
-    default: "annotated.vcf"
+    default: "filtered.vcf.gz"
     inputBinding:
-      prefix: "-O"
-      valueFrom: "annotated.vcf"
+      prefix: "--O"
+      valueFrom: "filtered.vcf.gz"
 
   # OPTIONAL ARGS
-  TensorType:
-    type: string?
-    inputBinding:
-      prefix: "-tensor-type"
-
-  Architecture:
-    type: string?
-    inputBinding:
-      prefix: "-architecture"
-
-  Weights:
+  ContaminationTable:
     type: File?
     inputBinding:
-      prefix: "-weights"
+      prefix: "--contamination-table"
 
 baseCommand: ["/gatk/gatk"]
 
 arguments:
-  - valueFrom: "CNNScoreVariants"
+  - valueFrom: "FilterMutectCalls"
     position: -1
 
 outputs:
@@ -73,7 +58,7 @@ outputs:
     type: File
     format: edam:format_3016  # VCF
     outputBinding:
-      glob: "annotated.vcf"
+      glob: "filtered.vcf.gz"
 
 $namespaces:
   edam: http://edamontology.org/

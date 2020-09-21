@@ -2,9 +2,15 @@
 cwlVersion: v1.0
 class: CommandLineTool
 
-requirements:
+hints:
   DockerRequirement:
     dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
+  SoftwareRequirement:
+    packages:
+      Kallisto:
+        specs: [ "http://identifiers.org/biotools/kallisto" ]
+        version: [ "0.45.0" ]
+requirements:
   InlineJavascriptRequirement: {}
 
 inputs:

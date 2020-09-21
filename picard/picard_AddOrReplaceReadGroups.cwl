@@ -44,9 +44,9 @@ requirements:
           return self;
       }
 hints:
-  - class: DockerRequirement
+  DockerRequirement:
     dockerPull: quay.io/biocontainers/picard:2.22.2--0
-  - class: SoftwareRequirement
+  SoftwareRequirement:
     packages:
       picard:
         version:
