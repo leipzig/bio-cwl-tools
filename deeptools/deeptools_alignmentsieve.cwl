@@ -24,7 +24,6 @@ hints:
         version: [ "3.1.1" ]
 
 inputs:
-
   bambai_pair:
     type: File
     secondaryFiles: $(self.basename+".bai")  # due to bug in cwltool==1.0.20190621234233
@@ -122,7 +121,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "deeptools_alignmentsieve"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

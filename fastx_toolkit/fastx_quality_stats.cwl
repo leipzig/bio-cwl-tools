@@ -11,7 +11,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/fastx_toolkit:v0.0.14
+    dockerPull: truwl/fastx_toolkit:v0.0.14
   SoftwareRequirement:
     packages:
       fastx_toolkit:
@@ -92,7 +92,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "fastx_quality_stats"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

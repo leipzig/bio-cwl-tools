@@ -25,7 +25,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/bowtie2:2.3.0--py36_1
+    dockerPull: truwl/bowtie2:2.3.0--py36_1
   SoftwareRequirement:
     packages:
       bowtie2:
@@ -900,7 +900,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "bowtie2_align"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

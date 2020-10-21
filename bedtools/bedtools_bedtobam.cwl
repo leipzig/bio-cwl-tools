@@ -12,7 +12,7 @@ hints:
     coresMin: 1
     ramMin: 15000
   DockerRequirement:
-    dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
+    dockerPull: truwl/bedtools:v2.27.1dfsg-4-deb_cv1
   SoftwareRequirement:
     packages:
       bedtools:

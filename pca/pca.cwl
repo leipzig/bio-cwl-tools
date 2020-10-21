@@ -4,7 +4,7 @@ class: CommandLineTool
 
 requirements:
   DockerRequirement:
-    dockerPull: biowardrobe2/pca:v0.0.4
+    dockerPull: truwl/pca:v0.0.4
 
 inputs:
 
@@ -88,7 +88,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- https://schema.org/version/latest/schema.rdf
+- https://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "pca"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

@@ -9,7 +9,7 @@ requirements:
   - class: InlineJavascriptRequirement
 hints:
   DockerRequirement:
-    dockerPull: kerstenbreuer/phantompeakqualtools:1.2
+    dockerPull: truwl/phantompeakqualtools:1.2
   ResourceRequirement:
     coresMin: 1
     ramMin: 20000

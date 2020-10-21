@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/kallisto:0.45.0--hdcc98e5_0"
+    dockerPull: truwl/kallisto:0.45.0--hdcc98e5_0
   SoftwareRequirement:
     packages:
       Kallisto:

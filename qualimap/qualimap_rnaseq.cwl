@@ -20,7 +20,7 @@ hints:
           - https://identifiers.org/rrid/RRID:SCR_001209
           - https://bio.tools/qualimap
   DockerRequirement:
-    dockerPull: 'quay.io/biocontainers/qualimap:2.2.2d--1'
+    dockerPull: truwl/qualimap:2.2.2d--1'
 
 # Base command
 baseCommand: [ qualimap, rnaseq ]
@@ -90,7 +90,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:codeRepository: https://github.com/common-workflow-library/bio-cwl-tools
 s:license: http://www.apache.org/licenses/LICENSE-2.0

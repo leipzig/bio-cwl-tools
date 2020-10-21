@@ -46,7 +46,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/bowtie:v1.2.0
+    dockerPull: truwl/bowtie:v1.2.0
   SoftwareRequirement:
     packages:
       bowtie:
@@ -879,7 +879,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "bowtie_align"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

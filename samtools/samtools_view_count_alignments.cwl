@@ -13,7 +13,7 @@ hints:
     coresMin: 1
     ramMin: 10000
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/samtools:1.2-0
+    dockerPull: truwl/samtools:1.2-0
   SoftwareRequirement:
     packages:
       samtools:

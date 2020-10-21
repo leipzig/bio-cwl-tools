@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/nanoplot:1.29.0--py_0
+    dockerPull: truwl/nanoplot:1.29.0--py_0
   SoftwareRequirement:
     packages:
       nanoplot:

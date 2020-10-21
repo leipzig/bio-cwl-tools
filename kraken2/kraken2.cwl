@@ -155,7 +155,7 @@ hints:
         specs:
           - http://identifiers.org/biotools/kraken2
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/kraken2:2.0.8_beta--pl526h6bb024c_0"
+    dockerPull: truwl/kraken2:2.0.8_beta--pl526h6bb024c_0
 
 requirements:
   InlineJavascriptRequirement: {}
@@ -169,7 +169,7 @@ $namespaces:
   s: http://schema.org/
 $schemas:
   - "http://edamontology.org/EDAM.owl"
-  - "http://schema.org/version/latest/schema.rdf"
+  - "http://schema.org/version/9.0/schemaorg-current-http.rdf"
 
 s:name: "kraken2"
 s:license: "https://spdx.org/licenses/MIT.html"

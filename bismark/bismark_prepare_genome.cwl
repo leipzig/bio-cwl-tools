@@ -5,7 +5,7 @@ class: CommandLineTool
 requirements:
 - class: InlineJavascriptRequirement
   DockerRequirement:
-    dockerPull: biowardrobe2/bismark:v0.0.2
+    dockerPull: truwl/bismark:v0.0.2
 - class: InitialWorkDirRequirement
   listing: |
     ${
@@ -48,7 +48,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "bismark_prepare_genome"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

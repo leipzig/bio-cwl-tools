@@ -157,7 +157,7 @@ requirements:
          - NO_VARIATION
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/gatk4:4.1.6.0--py38_0
+    dockerPull: truwl/gatk4:4.1.6.0--py38_0
   SoftwareRequirement:
     packages:
       gatk:

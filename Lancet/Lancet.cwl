@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "sinaiiidgst/lancet:latest"
+    dockerPull: truwl/lancet:latest
   InlineJavascriptRequirement: {}
   SoftwareRequirement:
     packages:

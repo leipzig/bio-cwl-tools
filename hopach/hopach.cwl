@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/hopach:v0.0.6
+    dockerPull: truwl/hopach:v0.0.6
   SoftwareRequirement:
     packages:
       hopach:
@@ -188,7 +188,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "hopach"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

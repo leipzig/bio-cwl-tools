@@ -8,7 +8,7 @@ label: MashMap
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/mashmap:2.0--gsl2.2_1"
+    dockerPull: truwl/mashmap:2.0--gsl2.2_1
   SoftwareRequirement:
     packages:
       mashmap:
@@ -121,7 +121,7 @@ $namespaces:
   edam: http://edamontology.org/
 
 $schemas:
-  - https://schema.org/version/latest/schema.rdf
+  - https://schema.org/version/9.0/schemaorg-current-http.rdf
   - http://edamontology.org/EDAM_1.20.owl
 
 

@@ -17,7 +17,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: stevetsa/preseq:2.0
+    dockerPull: truwl/preseq:2.0
 
 inputs:
 
@@ -121,7 +121,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
- - https://schema.org/version/latest/schema.rdf
+ - https://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "preseq-lc-extrap"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

@@ -17,7 +17,7 @@ hints:
     ramMin: $(7 * 1024)
     outdirMin: 1
   DockerRequirement:
-    #dockerPull: quay.io/biocontainers/odgi:0.3--py37h8b12597_0
+    #dockerPull: truwl/odgi:0.3--py37h8b12597_0
     dockerImageId: odgi:latest
     dockerFile: |
       FROM debian:bullseye-slim

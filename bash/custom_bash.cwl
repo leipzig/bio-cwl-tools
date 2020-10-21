@@ -8,7 +8,7 @@ doc: |
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/scidap:v0.0.3
+    dockerPull: truwl/scidap:v0.0.3
 
 inputs:
 
@@ -46,7 +46,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "custom_bash"
 s:downloadUrl: https://raw.githubusercontent.com/common-workflow-library/bio-cwl-tools/release/tools/bash/custom_bash.cwl

@@ -36,7 +36,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/crossmap:0.2.7--py27_0
+    dockerPull: truwl/crossmap:0.2.7--py27_0
 
 inputs:
 
@@ -153,7 +153,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "crossmap"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

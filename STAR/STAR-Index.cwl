@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/star:2.7.6a--0"
+    dockerPull: truwl/star:2.7.6a--0
   SoftwareRequirement:
     packages:
       STAR:
@@ -23,7 +23,7 @@ inputs:
     type: string
     inputBinding:
       prefix: "--genomeDir"
-      valueFrom: $("./" + self)
+      valueFrom: ./$(self)
 
 #Optional Inputs
   
@@ -52,7 +52,7 @@ inputs:
     inputBinding:
       prefix: "--genomeChrBinNbits"
 
-baseCommand: [STAR]     
+baseCommand: STAR
 
 arguments:
   - valueFrom: "--runmode genomeGenerate"
@@ -62,4 +62,4 @@ outputs:
   indexes:
     type: Directory
     outputBinding:
-      glob: $("./" + inputs.IndexName + "/")
+      glob: ./$(inputs.IndexName)/

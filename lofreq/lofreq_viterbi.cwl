@@ -13,7 +13,7 @@ hints:
     coresMin: 1
     ramMin: 20000
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/lofreq:2.1.4--py27hc3dfafe_1
+    dockerPull: truwl/lofreq:2.1.4--py27hc3dfafe_1
 
 requirements:
   InitialWorkDirRequirement:

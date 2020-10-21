@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/sra-tools:2.10.3--pl526haddd2b5_0
+    dockerPull: truwl/sra-tools:2.10.3--pl526haddd2b5_0
   SoftwareRequirement:
     packages:
       sratoolkit:
@@ -40,7 +40,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "prefetch"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

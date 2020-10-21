@@ -13,7 +13,7 @@ hints:
     coresMin: 4
     ramMin: 30000
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/bowtie2:2.3.0--py36_1
+    dockerPull: truwl/bowtie2:2.3.0--py36_1
   SoftwareRequirement:
     packages:
       bowtie2:

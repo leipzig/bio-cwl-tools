@@ -5,7 +5,7 @@ class: CommandLineTool
 baseCommand: [samtools, stats]
 requirements:
   DockerRequirement:
-    dockerPull: biocontainers/samtools:v1.7.0_cv3
+    dockerPull: truwl/samtools:v1.7.0_cv3
 
 inputs:
   input_file:

@@ -12,7 +12,7 @@ requirements:
   InlineJavascriptRequirement: {}
 hints:
   DockerRequirement:
-    dockerPull: quay.io/biocontainers/minimap2:2.17--h8b12597_1
+    dockerPull: truwl/minimap2:2.17--h8b12597_1
   SoftwareRequirement:
     packages:
       minimap2:
@@ -68,5 +68,5 @@ $namespaces:
   edam: http://edamontology.org/
 
 $schemas:
-  - https://schema.org/version/latest/schema.rdf
+  - https://schema.org/version/9.0/schemaorg-current-http.rdf
   - http://edamontology.org/EDAM_1.20.owl

@@ -17,7 +17,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/hal:v0.0.1
+    dockerPull: truwl/hal:v0.0.1
 
 inputs:
 
@@ -102,7 +102,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "halliftover"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

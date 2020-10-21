@@ -4,7 +4,7 @@ class: CommandLineTool
 
 requirements:
   DockerRequirement:
-    dockerPull: "broadinstitute/gatk:4.1.1.0"
+    dockerPull: truwl/gatk:4.1.1.0
   InlineJavascriptRequirement: {}
 
 hints:

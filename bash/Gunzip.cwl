@@ -4,7 +4,7 @@ class: CommandLineTool
 
 requirements:
   DockerRequirement:
-    dockerPull: ubuntu:xenial
+    dockerPull: truwl/debian-buster:0.1.0
 
 inputs:
   InputFile:

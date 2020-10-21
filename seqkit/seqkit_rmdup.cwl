@@ -10,7 +10,7 @@ hints:
       seqkit:
         version: [ 0.7.1 ]
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/seqkit:0.7.1--0"
+    dockerPull: truwl/seqkit:0.7.1--0
   ResourceRequirement:
     coresMin: 8
     coresMax: 32

@@ -11,7 +11,7 @@ hints:
       odgi:
         version: [ "0.4.1" ]
   DockerRequirement:
-    #dockerPull: quay.io/biocontainers/odgi:0.3--py37h8b12597_0
+    #dockerPull: truwl/odgi:0.3--py37h8b12597_0
     dockerImageId: odgi:latest
     dockerFile: |
       FROM debian:bullseye-slim

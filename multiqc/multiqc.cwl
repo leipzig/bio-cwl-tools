@@ -53,7 +53,7 @@ hints:
     coresMin: 1
     ramMin: 10000
   DockerRequirement:
-    dockerPull: kerstenbreuer/multiqc:1.7
+    dockerPull: truwl/multiqc:1.7
   
 
 baseCommand: ["multiqc"]

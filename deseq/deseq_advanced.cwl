@@ -7,7 +7,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/scidap-deseq:v0.0.8
+    dockerPull: truwl/scidap-deseq:v0.0.8
   SoftwareRequirement:
     packages:
       deseq:
@@ -91,7 +91,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "deseq_advanced"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

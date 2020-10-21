@@ -12,7 +12,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biocontainers/bedtools:v2.27.1dfsg-4-deb_cv1
+    dockerPull: truwl/bedtools:v2.27.1dfsg-4-deb_cv1
   SoftwareRequirement:
     packages:
       bedtools:
@@ -217,7 +217,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "bedtools_genomecov"
 s:license: http://www.apache.org/licenses/LICENSE-2.0

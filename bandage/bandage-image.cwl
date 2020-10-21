@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: biocontainers/bandage:v0.8.1-1-deb_cv1
+    dockerPull: truwl/bandage:v0.8.1-1-deb_cv1
 
 requirements:
   EnvVarRequirement:

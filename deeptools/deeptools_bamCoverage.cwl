@@ -14,7 +14,7 @@ hints:
     coresMin: 1
     ramMin: 20000
   DockerRequirement:
-    dockerPull: kerstenbreuer/deeptools:3.1.1
+    dockerPull: truwl/deeptools:3.1.1
   SoftwareRequirement:
     packages:
       deeptools:

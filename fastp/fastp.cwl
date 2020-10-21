@@ -8,7 +8,7 @@ requirements:
     InlineJavascriptRequirement: {}
 hints:
     DockerRequirement:
-        dockerPull: quay.io/biocontainers/fastp:0.20.0--hdbcaa40_0
+        dockerPull: truwl/fastp:0.20.0--hdbcaa40_0
 
 baseCommand: [fastp]
 

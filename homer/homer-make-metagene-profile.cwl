@@ -7,7 +7,7 @@ requirements:
 
 hints:
   DockerRequirement:
-    dockerPull: biowardrobe2/homer:v0.0.2
+    dockerPull: truwl/homer:v0.0.2
 
 inputs:
 
@@ -145,7 +145,7 @@ $namespaces:
   s: http://schema.org/
 
 $schemas:
-- http://schema.org/version/latest/schema.rdf
+- http://schema.org/version/9.0/schemaorg-current-http.rdf
 
 s:name: "homer-make-metagene-profile"
 s:license: http://www.apache.org/licenses/LICENSE-2.0
