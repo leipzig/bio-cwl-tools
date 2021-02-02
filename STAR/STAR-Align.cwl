@@ -4,7 +4,7 @@ class: CommandLineTool
 
 hints:
   DockerRequirement:
-    dockerPull: "quay.io/biocontainers/star:2.7.6a--0"
+    dockerPull: truwl/star:2.7.6a--0
   SoftwareRequirement:
     packages:
       STAR:
